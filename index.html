@@ -1,40 +1,250 @@
-<!DOCTYPE>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Online Collaborative Text Editor</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="index.css" rel="stylesheet"></link>
-  <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-  </head>
-  <body>
-    <header class="header">
-      <h1 class="header__h1">Online Collab Edit</h1>
-    </header>
-    <div class="doc">
-      <div class="doc__background-ribbon"></div>
-      <div class="doc__text-editor hidden"></div>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+<body>    
+<div class="dashboard">
+    <div class="left">
+      <div class="sidebar">
+        <div class="wrapper">
+          <div class="menu">
+            <img src="https://i.ibb.co/B4Dn7CT/menu.png" />
+          </div>
+          <div class="items">
+            <img src="https://i.ibb.co/L8D5T60/light.png" />
+            <img src="https://i.ibb.co/zmDbMVZ/diamond.png" />
+            <img src="https://i.ibb.co/W5QZ9Fk/envelope.png" />
+            <img src="https://i.ibb.co/CnKDBxC/flask.png" />
+            <img src="https://i.ibb.co/MGs4Fyn/sent-mail.png" />
+            <img src="https://i.ibb.co/zGtDpcp/map.png" />
+          </div>
+          <div class="profile">
+            <img src="https://www.seekclipart.com/clipng/middle/103-1032140_graphic-transparent-1-vector-flat-small-user-icon.png" />
+          </div>
+        </div>
+      </div>
+      <div class="navigation">
+        <div class="wrapper2">
+          <div class="abilan">
+            <img src="https://i.ibb.co/HgJrt1p/abilan.png" />
+          </div>
+          <button class="compose">Compose Mail 
+           <span class="plus">
+              <img src="https://i.ibb.co/v1HxGWj/add-1.png"/></span></button>
+          <div class="folders">Folders</div>
+          <div class="folder-icons">
+            <div class="icon1">
+              <img src="https://i.ibb.co/qdgf3TJ/envelope.png" />
+            </div>
+            <div class="icon-name1">Inbox
+              <button class="buton-span"> 20
+            </button></div>
+          </div>
+          <div class="folder-icons">
+            <div class="icon1">
+              <img src="https://i.ibb.co/2yLfX9W/sent-mail.png" />
+            </div>
+            <div class="icon-name">Send Mail</div>
+          </div>
+          <div class="folder-icons">
+            <div class="icon1">
+              <img src="https://i.ibb.co/6ZH9kK3/star.png" />
+            </div>
+            <div class="icon-name">Important</div>
+          </div>
+          <div class="folder-icons">
+            <div class="icon1">
+              <img src="https://i.ibb.co/z4QhcbD/email.png" />
+            </div>
+            <div class="icon-name">Draft</div>
+          </div>
+          <div class="folder-icons">
+            <div class="icon1">
+              <img src="https://i.ibb.co/3MzfGDF/bug.png" />
+            </div>
+            <div class="icon-name">Spam</div>
+          </div>
+          <div class="folder-icons">
+            <div class="icon1">
+              <img src="https://i.ibb.co/xfcFLCN/waste-bin.png" />
+            </div>
+            <div class="icon-name">Trash</div>
+          </div>
+          <div class="folders">
+            Online Friends
+          </div>
+          <div class="folder-icons">
+            <div class="avatar">
+              <div class="online">
+              </div>
+              <img src="https://randomuser.me/api/portraits/women/65.jpg" />
+            </div>
+            <div class="names">Don Allen
+            </div>
+  
+          </div>
+          <div class="folder-icons">
+            <div class="avatar">
+              <div class="online">
+              </div>
+              <img src="https://randomuser.me/api/portraits/women/71.jpg" />
+            </div>
+            <div class="names">Aaron Tim</div>
+          </div>
+          <div class="folder-icons">
+            <div class="avatar">
+              <div class="online red">
+              </div>
+              <img src="https://randomuser.me/api/portraits/men/54.jpg" />
+            </div>
+            <div class="names">Jack Joe</div>
+          </div>
+          <div class="folders">
+            Labels
+          </div>
+          <div class="section1">
+            <button class="btn buton1"> Important
+            <span class="tag">
+              <img src="https://i.ibb.co/Zdx3jGx/tag.png"/></span>
+            </button>
+  
+            <button class="btn buton2"> New
+              <span class="tag">
+              <img src="https://i.ibb.co/N1SMfgQ/tag.png"/></span>
+            </button>
+          </div>
+          <div class="section2">
+            <button class="btn buton3"> Old
+               <span class="tag">
+              <img src="https://i.ibb.co/C5q0MDM/tag.png"/></span>
+             </button>
+            <button class="btn buton4"> Priority
+               <span class="tag">
+              <img src="https://i.ibb.co/DMmSZW0/tag.png"/></span>
+             </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <script>
-    var pusher = new Pusher(<INSERT_PUSHER_APP_KEY_HERE>);
-    // subscribe to the changes via Pusher
-    var channel = pusher.subscribe(id);
-    channel.bind('some-fun-event', function(data) {
-    // do something meaningful with the data here
-    });
-    channel.bind('client-text-edit', function(html) {
-    doc.innerHTML = html;
-    });
-    function triggerChange (e) {
-    channel.trigger('client-text-edit', e.target.innerHTML);
-    }
-
-    doc.addEventListener('input', triggerChange);
-    </script>  
-    <script src="index.js> </script> 
-  </body>
+    <div class="right-side">
+      <div class="right-header">
+        <div class="top-bar">
+          <div class="top-bar-justify">
+            <div class="big-inbox">
+              Inbox
+            </div>
+  
+            <div class="top-bar-items">
+              <div class="notif">
+                <div class="online pink">
+                </div>
+                <img src="https://i.ibb.co/VJm73Hz/notifications-button.png" />
+              </div>
+              <img src="https://i.ibb.co/vz4HYJb/envelope.png" />
+              <img src="https://i.ibb.co/52Vkq4M/earth-globe.png" />
+              <div class="icon-name5"> English </div>
+            </div>
+          </div>
+          <div class="profile2">
+            <img src="https://www.seekclipart.com/clipng/middle/103-1032140_graphic-transparent-1-vector-flat-small-user-icon.png" />
+            <div class="icon-name5">Larry Nunez</div>
+          </div>
+        </div>
+        <hr class="new-hr">
+        <div class="right-bottom">
+          <div class="check">
+            <label class="checkbox">
+          <input type="checkbox"/>
+          </label>
+            <div class="down-arrow">
+              <img src="https://i.ibb.co/WDqrXj6/drop-down-arrow.png" />
+            </div>
+          </div>
+          <div class="middle-buttons">
+            <div class="buttons">
+              <button class="new button"> 
+        <img src="https://i.ibb.co/X4j3TZR/reload.png" />
+             </button>
+              <button class="new button"> 
+        <img src="https://i.ibb.co/L60Yr87/eye.png" />
+             </button>
+              <button class="new button"> 
+        <img src="https://i.ibb.co/Lv6TqBG/waste-bin.png" />
+             </button>
+            </div>
+            <div class="form has-search">
+              <input class="text" type="search" placeholder="Search here..." name="search" />
+              <span class="searchIcon">
+           <img src="https://i.ibb.co/sqFgRq8/search.png" />
+         </span>
+            </div>
+          </div>
+          <div class="search-arrow">
+            <img src="https://i.ibb.co/cx2t05H/scroll-arrows.png" />
+          </div>
+        </div>
+      </div>
+     
+              <span class="person border1"> C</span>
+              <div class="mail-names">
+                
+              </div>
+  
+            </div>
+            <div class="mail-info">
+              
+  
+            </div>
+            <div>
+            </div>
+            <div class="bottom-info">
+              <div class="check1">
+                <label class="checkbox">
+          <input type="checkbox"/>
+          </label>
+                
+              <span class="person border2">O</span>
+              <div class="mail-names">
+               
+              </div>
+  
+            </div>
+            <div class="mail-info">
+              
+            </div>
+            <div>
+            </div>
+            <div class="bottom-info">
+              <div class="check1">
+                <label class="checkbox">
+          <input type="checkbox"/>
+  
+           
+  
+              </div>
+              
+            </div>
+  
+          </div>
+  
+        </div>
+            <button class="son-buton"> 20+
+            </button>
+          </div>
+          <button class="btn2 butona"> Reply
+               <span class="tag"> 
+               <img src="https://i.ibb.co/GQf8frw/reply.png"/>
+               </span>
+            </button>
+  
+          <button class="btn2 butonb"> Forward
+              <span class="tag"> 
+               <img src="https://i.ibb.co/6W40kTg/forward-arrow.png"/>
+               </span>
+            </button>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
 </html>
-
-            
