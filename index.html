@@ -7,6 +7,7 @@
     <title>Online Collaborative Text Editor</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="index.css" rel="stylesheet"></link>
+  <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
   </head>
   <body>
     <header class="header">
@@ -16,6 +17,24 @@
       <div class="doc__background-ribbon"></div>
       <div class="doc__text-editor hidden"></div>
     </div>
+    <script>
+    var pusher = new Pusher(<INSERT_PUSHER_APP_KEY_HERE>);
+    // subscribe to the changes via Pusher
+    var channel = pusher.subscribe(id);
+    channel.bind('some-fun-event', function(data) {
+    // do something meaningful with the data here
+    });
+    channel.bind('client-text-edit', function(html) {
+    doc.innerHTML = html;
+    });
+    function triggerChange (e) {
+    channel.trigger('client-text-edit', e.target.innerHTML);
+    }
+
+    doc.addEventListener('input', triggerChange);
+    </script>  
     <script src="index.js> </script> 
   </body>
 </html>
+
+            
